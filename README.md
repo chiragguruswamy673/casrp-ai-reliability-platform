@@ -34,27 +34,27 @@ CASRP (Cognitive Autonomous System Reliability Platform) is an **AI-inspired rel
 ## 🏗️ High-Level Architecture
 ``` mermaid
 flowchart TD
-    A[Selenium & TestNG<br/>Test Execution] --> B[TestNG XML Report]
-    B --> C[CASRP API<br/>(FastAPI)]
+    A[Selenium Test Execution] --> B[TestNG XML Report]
+    B --> C[CASRP API]
 
     C --> C1[Ingest Test Results]
     C --> C2[System Events]
-    C --> C3[Digital Twin State]
-    C --> C4[Observability APIs]
+    C --> C3[State Queries]
+    C --> C4[Observability]
 
     C --> D[Digital Twin]
-    D --> D1[Services State]
-    D --> D2[DB Schema Version]
+    D --> D1[Services]
+    D --> D2[Database Schema]
     D --> D3[Test Failures]
     D --> D4[Risk Score]
 
-    D --> E[AI Reasoning Layer]
-    E --> E1[Risk Predictor]
-    E --> E2[Flaky Analyzer]
-    E --> E3[Healing Suggestions]
-    E --> E4[Incident Generator]
+    D --> E[AI Reasoning]
+    E --> E1[Risk Prediction]
+    E --> E2[Flaky Detection]
+    E --> E3[Healing Logic]
+    E --> E4[Incident Summary]
 
-    E --> F[Memory Layer]
+    E --> F[Memory Store]
     F --> F1[Event History]
     F --> F2[Failure Counts]
     F --> F3[Incident Timeline]
