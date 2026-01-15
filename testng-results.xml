@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="1" total="2" passed="1">
+  <suite name="Demo Suite">
+    <test name="Login Tests">
+      <class name="LoginTest">
+        <test-method name="testValidLogin" status="PASS"/>
+        <test-method name="testInvalidLogin" status="FAIL">
+          <exception>
+            <message>ElementNotFoundException</message>
+          </exception>
+        </test-method>
+      </class>
+    </test>
+  </suite>
+</testng-results>
