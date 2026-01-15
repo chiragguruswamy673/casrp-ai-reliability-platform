@@ -2,7 +2,7 @@
 
 CASRP (Cognitive Autonomous System Reliability Platform) is an **AI-inspired reliability and QA intelligence system** that ingests real test execution results, maintains a digital twin of system state, assesses deployment risk, detects flaky tests, proposes remediation actions, and generates incident summaries.
 
-This project is designed to demonstrate **real-world system thinking**, not just automation.
+
 
 ---
 
@@ -32,69 +32,50 @@ This project is designed to demonstrate **real-world system thinking**, not just
 
 ---
 ## 🏗️ High-Level Architecture
+``` mermaid
+flowchart TD
+    A[Selenium / TestNG\nTest Execution] --> B[TestNG XML Report]
+    B --> C[CASRP API\n(FastAPI)]
 
-┌─────────────┐
-│ Selenium / │
-│ TestNG │
-│ Test Runs │
-└──────┬──────┘
-│ testng-results.xml
-▼
-┌──────────────────────────┐
-│ CASRP API (FastAPI) │
-│ │
-│ /ingest/testng │
-│ /event/* │
-│ /twin/state │
-│ /observe/* │
-└─────────┬────────────────┘
-│
-▼
-┌──────────────────────────┐
-│ Digital Twin │
-│ - Services │
-│ - DB schema │
-│ - Test failures │
-│ - Risk score │
-└─────────┬────────────────┘
-│
-▼
-┌──────────────────────────┐
-│ AI Reasoning Layer │
-│ - Risk Predictor │
-│ - Healing Suggestions │
-│ - Flaky Analyzer │
-│ - Incident Summarizer │
-└─────────┬────────────────┘
-│
-▼
-┌──────────────────────────┐
-│ Memory Layer │
-│ - Event history │
-│ - Failure counts │
-│ - Incident timelines │
-└──────────────────────────┘
+    C --> C1[/ingest/testng]
+    C --> C2[/event/*]
+    C --> C3[/twin/state]
+    C --> C4[/observe/*]
+
+    C --> D[Digital Twin]
+    D --> D1[Services]
+    D --> D2[DB Schema]
+    D --> D3[Test Failures]
+    D --> D4[Risk Score]
+
+    D --> E[AI Reasoning Layer]
+    E --> E1[Risk Predictor]
+    E --> E2[Flaky Analyzer]
+    E --> E3[Healing Suggestions]
+    E --> E4[Incident Summarizer]
+
+    E --> F[Memory Layer]
+    F --> F1[Event History]
+    F --> F2[Failure Counts]
+    F --> F3[Incident Timeline]
+```
 
 ## 🔄 End-to-End Flow
 
-Test Execution
-↓
-TestNG XML Report
-↓
-/ingest/testng
-↓
-TEST_FAILURE events
-↓
-Digital Twin Update
-↓
-Risk Assessment
-↓
-Flaky Detection
-↓
-Healing Suggestions
-↓
-Incident Summary
+```mermaid
+sequenceDiagram
+    participant T as Selenium / TestNG
+    participant API as CASRP API
+    participant DT as Digital Twin
+    participant AI as AI Reasoning
+    participant M as Memory
 
+    T->>API: Execute tests
+    API->>DT: Ingest testng-results.xml
+    DT->>AI: Snapshot system state
+    AI->>M: Store analysis & history
+    AI->>API: Risk, Flaky, Healing, Incident
+```
 ---
 
 ## 🧪 Flaky Test Detection Logic
@@ -152,7 +133,6 @@ Flaky Detection
 ```
 Incident Summary
 ```json
-Copy code
 {
   "severity": "medium",
   "risk_score": 0.6,
@@ -160,37 +140,26 @@ Copy code
 }
 ```
 ## 🧠 Design Philosophy
-Deterministic over black-box AI
-
-Explainability over complexity
-
-Safety before autonomy
-
-Real signals, no hallucinations
+- Deterministic over black-box AI
+- Explainability over complexity
+- Safety before autonomy
+- Real signals, no hallucinations
 
 ## 🏆 Why This Project Matters
 Most QA or DevOps projects stop at test execution.
 
 CASRP goes further:
-
-Understands test reliability
-
-Reasons about system risk
-
-Suggests safe remediation
-
-Builds incident narratives
-
-This reflects real SRE and platform engineering thinking.
+- Understands test reliability
+- Reasons about system risk
+- Suggests safe remediation
+- Builds incident narratives
+- This reflects real SRE and platform engineering - thinking.
 
 ## 📌 Future Enhancements (Optional)
-Persistent storage
-
-Kubernetes deployment
-
-Authentication & RBAC
-
-Trend analysis dashboards
+- Persistent storage
+- Kubernetes deployment
+- Authentication & RBAC
+- Trend analysis dashboards
 
 ## 👤 Author
 Chirag Guruswamy
